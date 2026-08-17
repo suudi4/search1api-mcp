@@ -159,7 +159,8 @@ function showView(name) {
     tab.setAttribute('aria-selected', String(on));
   });
   if (name === 'progress') renderProgress();
-  window.scrollTo({ top: 0, behavior: 'smooth' });
+  const still = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  window.scrollTo({ top: 0, behavior: still ? 'auto' : 'smooth' });
 }
 
 /* ------------------------------------------------------------------ */

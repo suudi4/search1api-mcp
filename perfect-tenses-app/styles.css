@@ -26,8 +26,11 @@
   --shadow: 0 1px 2px rgba(30, 28, 25, .06), 0 6px 20px rgba(30, 28, 25, .05);
 }
 
+/* Dark palette. Declared twice on purpose: once for viewers on the OS setting,
+ * once for hosts that stamp an explicit data-theme on the root element.
+ * Keep the two blocks in sync — only token values belong in either. */
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not([data-theme="light"]) {
     --bg:        #16151a;
     --surface:   #1f1e24;
     --surface-2: #26252c;
@@ -51,6 +54,31 @@
 
     --shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 6px 20px rgba(0, 0, 0, .25);
   }
+}
+
+:root[data-theme="dark"] {
+  --bg:        #16151a;
+  --surface:   #1f1e24;
+  --surface-2: #26252c;
+  --line:      #34323b;
+  --ink:       #eceaf0;
+  --ink-soft:  #b2aeba;
+  --ink-faint: #857f8f;
+  --accent:    #d08a63;
+  --accent-ink:#1a1418;
+  --ok:        #6fce9c;
+  --ok-bg:     #1c3428;
+  --bad:       #ef8f8f;
+  --bad-bg:    #3a2225;
+
+  --t1: #d08a63;
+  --t2: #dbb057;
+  --t3: #79b3d6;
+  --t4: #96a2e2;
+  --t5: #6fce9c;
+  --t6: #bb96d4;
+
+  --shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 6px 20px rgba(0, 0, 0, .25);
 }
 
 * { box-sizing: border-box; }
@@ -287,6 +315,10 @@ select:focus-visible, input:focus-visible, .btn:focus-visible, .tab:focus-visibl
 .bar > i { display: block; height: 100%; background: var(--hue); border-radius: 3px; }
 
 .foot { padding: 1.5rem 0 2.5rem; font-size: .78rem; color: var(--ink-faint); border-top: 1px solid var(--line); }
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; animation: none !important; }
+}
 
 @media (max-width: 560px) {
   .topbar-inner { justify-content: center; }
